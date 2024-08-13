@@ -12,14 +12,14 @@ func main() {
 	sonOfLions.ShowLion()
 
 
-	zooKeper := zoo.NewZookeeper("Mykyta", []zoo.Multipler{})
-    zooKeper.CatchAnimal(lion.Animal)
-	zooKeper.CatchAnimal(lion2.Animal)
-	zooKeper.CatchAnimal(sonOfLions.Animal)
+	zooKeeper := zoo.NewZookeeper("Mykyta", []zoo.Multipler{})
+    zooKeeper.CatchAnimal(lion.Animal)
+	zooKeeper.CatchAnimal(lion2.Animal)
+	zooKeeper.CatchAnimal(sonOfLions.Animal)
 
 	zoo.NewAnimal("Krakozyabra", zoo.Man); 
     
-	for _, animal := range zooKeper.HoldingAnimals() {
+	for _, animal := range zooKeeper.HoldingAnimals() {
 		fmt.Printf("animal.Sex().String(): %v\n", animal.Sex().String())
 		fmt.Printf("animal.Name(): %v\n", animal.Name())
 	}
