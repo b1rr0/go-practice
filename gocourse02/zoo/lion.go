@@ -2,8 +2,7 @@ package zoo
 
 import (
 	"fmt"
-
-	"gocourse02/utils"
+	"reflect"
 )
 
 type Lion struct {
@@ -22,12 +21,12 @@ func NewLion(animal *Animal, color string) *Lion {
 	}
 }
 
-func (l *Lion) Multiply(otherLion Lion) *Lion {
-	color := l.Color() + "&" + otherLion.Color()
-	return NewLion(l.Animal.Multiply(otherLion.Animal), color)
+func (l *Lion) Reproduce(lion Lion) *Lion {
+	color := l.Color() + "&" + lion.Color()
+	return NewLion(l.Animal.Reproduce(lion.Animal), color)
 }
 
-func (l *Lion) ShowLion() {
-	fmt.Println(utils.GetType(l))
+func (l *Lion) Show() {
+	fmt.Println(reflect.TypeOf(l))
 	l.Animal.ShowAnimal()
 }

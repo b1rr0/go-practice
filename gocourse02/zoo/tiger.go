@@ -2,12 +2,12 @@ package zoo
 
 import (
 	"fmt"
-	"gocourse02/utils"
+	"reflect"
 )
 
 type Tiger struct {
 	*Animal
-	Age int `json:"age" bson:"age"`
+	Age int
 }
 
 func NewTiger(animal *Animal, age int) *Tiger {
@@ -17,12 +17,12 @@ func NewTiger(animal *Animal, age int) *Tiger {
 	}
 }
 
-func (t *Tiger) Multiply(otherTiger *Tiger) *Tiger {
+func (t *Tiger) Reproduce(otherTiger *Tiger) *Tiger {
 	age := 0
-	return NewTiger(t.Animal.Multiply(otherTiger.Animal), age)
+	return NewTiger(t.Animal.Reproduce(otherTiger.Animal), age)
 }
 
-func (t *Tiger) ShowTiger() {
-	fmt.Println(utils.GetType(t))
+func (t *Tiger) Show() {
+	fmt.Println(reflect.TypeOf(t))
 	t.Animal.ShowAnimal()
 }

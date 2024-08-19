@@ -3,16 +3,16 @@ package zoo
 type Sex int
 
 const (
-	Man Sex = iota
-	Woman
+	Male Sex = iota
+	Female
 )
 
 func (s Sex) String() string {
 	switch s {
-	case Man:
-		return "Man"
-	case Woman:
-		return "Woman"
+	case Male:
+		return "Male"
+	case Female:
+		return "Female"
 	}
 	return "unknown"
 }

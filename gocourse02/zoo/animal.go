@@ -2,7 +2,6 @@ package zoo
 
 import (
 	"fmt"
-	"gocourse02/utils"
 )
 
 type Animal struct {
@@ -10,17 +9,17 @@ type Animal struct {
 	sex  Sex
 }
 
-type Multipler interface {
+type Reproducer interface {
 	Sex() Sex
 	Name() string
-	Multiply(Multipler) *Animal
+	Reproduce(Reproducer) *Animal
 }
 
-func (animal *Animal) Name() string {
-	return animal.name
+func (a *Animal) Name() string {
+	return a.name
 }
-func (animal *Animal) Sex() Sex {
-	return animal.sex
+func (a *Animal) Sex() Sex {
+	return a.sex
 }
 
 func NewAnimal(name string, sex Sex) *Animal {
@@ -30,18 +29,18 @@ func NewAnimal(name string, sex Sex) *Animal {
 	}
 }
 
-func (animal *Animal) Multiply(otherAnimal Multipler) *Animal {
-	if otherAnimal == nil {
-		fmt.Printf("Can't multiply %s and nil\n", animal.Name())
+func (a *Animal) Reproduce(animal Reproducer) *Animal {
+	if animal == nil {
+		fmt.Printf("Can't multiply %s and nil\n", a.Name())
 		return nil
 	}
-	if animal.Sex() == otherAnimal.Sex() {
-		fmt.Printf("Can't multiply %s and %s\n because they have the same sex", animal.Name(), otherAnimal.Name())
+	if a.Sex() == animal.Sex() {
+		fmt.Printf("Can't multiply %s and %s\n because they have the same sex", a.Name(), animal.Name())
 		return nil
 	}
 
-	newAnimalName := fmt.Sprintf("%s&%s", animal.Name(), otherAnimal.Name())
-	return NewAnimal(newAnimalName, Sex(utils.RandomOneZero()))
+	newAnimalName := fmt.Sprintf("%s&%s", a.Name(), animal.Name())
+	return NewAnimal(newAnimalName, Sex(RandomOneZero()))
 }
 
 func (a *Animal) ShowAnimal() {

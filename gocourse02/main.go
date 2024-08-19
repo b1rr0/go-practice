@@ -6,22 +6,20 @@ import (
 )
 
 func main() {
-	lion := zoo.NewLion(zoo.NewAnimal("Mykola", zoo.Man), "green")
-	lion2 := zoo.NewLion(zoo.NewAnimal("Natalia", zoo.Woman), "white")
-	sonOfLions := lion.Multiply(*lion2)
-	sonOfLions.ShowLion()
+	lion := zoo.NewLion(zoo.NewAnimal("Mykola", zoo.Male), "green")
+	lioness := zoo.NewLion(zoo.NewAnimal("Natalia", zoo.Female), "white")
+	cub := lion.Reproduce(*lioness)
+	cub.Show()
 
+	zooKeeper := zoo.NewZookeeper("Mykyta", []zoo.Reproducer{})
+	zooKeeper.CatchAnimal(lion.Animal)
+	zooKeeper.CatchAnimal(lioness.Animal)
+	zooKeeper.CatchAnimal(cub.Animal)
+	krakozyabra := zoo.NewAnimal("Krakozyabra", zoo.Male)
+	krakozyabra.ShowAnimal()
 
-	zooKeeper := zoo.NewZookeeper("Mykyta", []zoo.Multipler{})
-    zooKeeper.CatchAnimal(lion.Animal)
-	zooKeeper.CatchAnimal(lion2.Animal)
-	zooKeeper.CatchAnimal(sonOfLions.Animal)
-
-	zoo.NewAnimal("Krakozyabra", zoo.Man); 
-    
 	for _, animal := range zooKeeper.HoldingAnimals() {
 		fmt.Printf("animal.Sex().String(): %v\n", animal.Sex().String())
 		fmt.Printf("animal.Name(): %v\n", animal.Name())
 	}
 }
-
