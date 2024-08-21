@@ -18,6 +18,7 @@ type Reproducer interface {
 func (a *Animal) Name() string {
 	return a.name
 }
+
 func (a *Animal) Sex() Sex {
 	return a.sex
 }

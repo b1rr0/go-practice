@@ -56,7 +56,6 @@ func (b Box) AddToUse(med *Medicine) {
 }
 
 func (b Box) FilterMedicines(medicines []Medicine) {
-
 	for _, med := range medicines {
 		if med.Manufactured.Before(time.Now()) {
 			b.AddToDiscard(&med)
@@ -67,6 +66,7 @@ func (b Box) FilterMedicines(medicines []Medicine) {
 		}
 	}
 }
+
 func main() {
 	medicines := []Medicine{
 		{Name: "n1", Manufactured: time.Now().AddDate(0, 0, -1)},
@@ -108,5 +108,4 @@ func main() {
 	} else {
 		fmt.Println("Ліки 'n5' не знайдені.")
 	}
-
 }

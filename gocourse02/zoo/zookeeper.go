@@ -15,9 +15,11 @@ func NewZookeeper(name string, animals []Reproducer) *Zookeeper {
 		holdingAnimals: animals,
 	}
 }
+
 func (z *Zookeeper) Name() string {
 	return z.name
 }
+
 func (z *Zookeeper) HoldingAnimals() []Reproducer {
 	return z.holdingAnimals
 }
