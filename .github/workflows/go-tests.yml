@@ -25,4 +25,4 @@ jobs:
       run: cd gocourse04 && go mod download 
 
     - name: Run tests
-      run: go test ./... -v
+      run: cd gocourse04 && go test ./... -v
