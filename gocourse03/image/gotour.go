@@ -1,4 +1,4 @@
-package main
+package image
 
 import "golang.org/x/tour/pic"
 
@@ -17,6 +17,8 @@ func Pic(dx, dy int) [][]uint8 {
 func log(x, y int) uint8 {
 	return uint8(x ^ y)
 }
+
+type Image struct{}
 
 func main() {
 	pic.Show(Pic)

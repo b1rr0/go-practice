@@ -1,4 +1,4 @@
-package main
+package micemetropolis
 
 import (
 	"fmt"
@@ -14,27 +14,27 @@ type (
 	Movement struct {
 		Time time.Time
 		FromTo
-		rodentId int
+		rodentID int
 	}
 
 	Rodent struct {
-		ID          int
-		Type        rodentType
-		Sector      Sector
-		UpdatedTime time.Time
+		ID        int
+		Type      rodentType
+		Sector    Sector
+		UpdatedAt time.Time
 	}
 )
 
 func (m *Movement) Show() {
-	fmt.Print(m.rodentId, " ", m.FromTo[0], "->", m.FromTo[1], " ", m.Time.Format("2006-01-02 15:04:05"), "\n")
+	fmt.Print(m.rodentID, " ", m.FromTo[0], "->", m.FromTo[1], " ", m.Time.Format("2006-01-02 15:04:05"), "\n")
 }
 
 func NewRodent(id int, rodentType rodentType, sector Sector) *Rodent {
 	return &Rodent{
-		ID:          id,
-		Type:        rodentType,
-		Sector:      sector,
-		UpdatedTime: time.Now(),
+		ID:        id,
+		Type:      rodentType,
+		Sector:    sector,
+		UpdatedAt: time.Now(),
 	}
 }
 
@@ -42,7 +42,7 @@ func (rodent *Rodent) Show() {
 	fmt.Printf("ID: %d\n", rodent.ID)
 	fmt.Printf("Type: %s\n", rodent.Type)
 	fmt.Printf("Sector: %s\n", rodent.Sector)
-	fmt.Printf("UpdatedTime: %s\n", rodent.UpdatedTime.Format("2006-01-02 15:04:05"))
+	fmt.Printf("UpdatedTime: %s\n", rodent.UpdatedAt.Format("2006-01-02 15:04:05"))
 	fmt.Printf("__________________________________________\n")
 }
 
@@ -82,16 +82,16 @@ var sectorsToInt = map[Sector]int{
 } // just for practice
 
 const (
-	lenSectors       = 14
 	countTransitions = 66
 )
 
 func generateTransitionMatrix(transitions [][]int) [][]int {
+	transitionsLen := len(transitions)
 	for i := 0; i < countTransitions; i++ {
 		var from, to int
 		for from == to || transitions[from][to] > 0 {
-			from = rand.Intn(lenSectors)
-			to = rand.Intn(lenSectors)
+			from = rand.Intn(transitionsLen)
+			to = rand.Intn(transitionsLen)
 		}
 		transitions[from][to]++
 		transitions[to][from]++
@@ -109,35 +109,35 @@ func generateTransitionMatrix(transitions [][]int) [][]int {
 
 func generateMovements(transitions [][]int) []Movement {
 	movements := []Movement{}
+	transitionsLen := len(transitions)
 	for i := 1; i <= 20; i++ {
 		rodent := rodentMap[i]
 		for j := 0; j < 10; j++ {
 			from := rodent.Sector
 			var to Sector
 			for {
-				to = sectors[rand.Intn(lenSectors)]
+				to = sectors[rand.Intn(transitionsLen)]
 				if from != to && transitions[sectorsToInt[from]][sectorsToInt[to]] > 0 {
 					break
 				}
 			}
 
-			time := rodent.UpdatedTime.Add(time.Duration(rand.Intn(60)) * time.Minute)
-			movements = append(movements, Movement{Time: time, FromTo: FromTo{from, to}, rodentId: i})
+			time := rodent.UpdatedAt.Add(time.Duration(rand.Intn(60)) * time.Minute)
+			movements = append(movements, Movement{Time: time, FromTo: FromTo{from, to}, rodentID: i})
 
-			rodent.UpdatedTime = time
+			rodent.UpdatedAt = time
 			rodent.Sector = to
 		}
 	}
 	return movements
 }
 
-func main1() { // for exec secod file
-	fmt.Print(lenSectors)
-	transitions := make([][]int, lenSectors)
+func main() {
+	len := len(sectors)
+	transitions := make([][]int, len)
 	for i := range transitions {
-		transitions[i] = make([]int, lenSectors)
+		transitions[i] = make([]int, len)
 	}
-	fmt.Println(transitions[13][13])
 	transitions = generateTransitionMatrix(transitions)
 	for _, rodent := range rodentMap {
 		rodent.Show()
