@@ -2,23 +2,23 @@ package main
 
 import (
 	"fmt"
-	zoo "gocourse02/zoo"
+	"gocourse02/zoo"
 )
 
 func main() {
-	lion := zoo.NewLion(zoo.NewAnimal("Mykola", zoo.Male), "green")
-	lioness := zoo.NewLion(zoo.NewAnimal("Natalia", zoo.Female), "white")
+	lion := zoo.NewLion("Mykola", zoo.Male, "green")
+	lioness := zoo.NewLion("Natalia", zoo.Female, "white")
 	cub := lion.Reproduce(*lioness)
 	cub.Show()
 
-	zooKeeper := zoo.NewZookeeper("Mykyta", []zoo.Reproducer{})
-	zooKeeper.CatchAnimal(lion.Animal)
-	zooKeeper.CatchAnimal(lioness.Animal)
-	zooKeeper.CatchAnimal(cub.Animal)
+	zookeeper := zoo.NewZookeeper("Mykyta", []zoo.Reproducer{})
+	zookeeper.CatchAnimal(lion.Animal)
+	zookeeper.CatchAnimal(lioness.Animal)
+	zookeeper.CatchAnimal(cub.Animal)
 	krakozyabra := zoo.NewAnimal("Krakozyabra", zoo.Male)
-	krakozyabra.ShowAnimal()
+	krakozyabra.Show()
 
-	for _, animal := range zooKeeper.HoldingAnimals() {
+	for _, animal := range zookeeper.HoldingAnimals() {
 		fmt.Printf("animal.Sex().String(): %v\n", animal.Sex().String())
 		fmt.Printf("animal.Name(): %v\n", animal.Name())
 	}

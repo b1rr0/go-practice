@@ -10,23 +10,32 @@ type Lion struct {
 	color string
 }
 
+const (
+	description = "Lion something cool"
+)
+
 func (l *Lion) Color() string {
 	return l.color
 }
 
-func NewLion(animal *Animal, color string) *Lion {
+func NewLion(name string, sex Sex, color string) *Lion {
 	return &Lion{
-		Animal: animal,
+		Animal: NewAnimal(name, sex),
 		color:  color,
 	}
 }
 
 func (l *Lion) Reproduce(lion Lion) *Lion {
 	color := l.Color() + "&" + lion.Color()
-	return NewLion(l.Animal.Reproduce(lion.Animal), color)
+	child := l.Animal.Reproduce(lion.Animal)
+	if child == nil {
+		return nil
+	}
+	return NewLion(child.Name(), child.sex, color)
 }
 
 func (l *Lion) Show() {
 	fmt.Println(reflect.TypeOf(l))
-	l.Animal.ShowAnimal()
+	fmt.Print(description)
+	l.Animal.Show()
 }

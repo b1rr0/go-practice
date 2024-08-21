@@ -14,5 +14,5 @@ func (s Sex) String() string {
 	case Female:
 		return "Female"
 	}
-	return "unknown"
+	return "Unknown"
 }

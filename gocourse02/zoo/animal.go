@@ -31,11 +31,11 @@ func NewAnimal(name string, sex Sex) *Animal {
 
 func (a *Animal) Reproduce(animal Reproducer) *Animal {
 	if animal == nil {
-		fmt.Printf("Can't multiply %s and nil\n", a.Name())
+		fmt.Printf("Can't reproduce %s and nil\n", a.Name())
 		return nil
 	}
 	if a.Sex() == animal.Sex() {
-		fmt.Printf("Can't multiply %s and %s\n because they have the same sex", a.Name(), animal.Name())
+		fmt.Printf("Can't reproduce %s and %s\n because they have the same sex", a.Name(), animal.Name())
 		return nil
 	}
 
@@ -43,6 +43,6 @@ func (a *Animal) Reproduce(animal Reproducer) *Animal {
 	return NewAnimal(newAnimalName, Sex(RandomOneZero()))
 }
 
-func (a *Animal) ShowAnimal() {
+func (a *Animal) Show() {
 	fmt.Println(a.Name() + " " + a.Sex().String())
 }

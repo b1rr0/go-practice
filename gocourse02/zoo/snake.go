@@ -10,19 +10,28 @@ type Snake struct {
 	Length int
 }
 
-func NewSnake(animal *Animal, length int) *Snake {
+const (
+	defaultLength = 1
+	description   = "Snake something cool"
+)
+
+func NewSnake(name string, sex Sex, length int) *Snake {
 	return &Snake{
-		Animal: animal,
+		Animal: NewAnimal(name, sex),
 		Length: length,
 	}
 }
 
-func (t *Snake) Reproduce(otherSnake *Snake) *Snake {
-	length := 1
-	return NewSnake(t.Animal.Reproduce(otherSnake.Animal), length)
+func (s *Snake) Reproduce(snake *Snake) *Snake {
+	child := s.Animal.Reproduce(snake.Animal)
+	if child == nil {
+		return nil
+	}
+	return NewSnake(child.name, child.sex, defaultLength)
 }
 
-func (t *Snake) Show() {
-	fmt.Println(reflect.TypeOf(t))
-	t.Animal.ShowAnimal()
+func (s *Snake) Show() {
+	fmt.Println(reflect.TypeOf(s))
+	fmt.Print(description)
+	s.Animal.Show()
 }

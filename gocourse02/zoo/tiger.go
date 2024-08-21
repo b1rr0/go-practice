@@ -10,19 +10,28 @@ type Tiger struct {
 	Age int
 }
 
-func NewTiger(animal *Animal, age int) *Tiger {
+const (
+	description = "Tiger something cool"
+)
+
+func NewTiger(name string, sex Sex, age int) *Tiger {
 	return &Tiger{
-		Animal: animal,
+		Animal: NewAnimal(name, sex),
 		Age:    age,
 	}
 }
 
-func (t *Tiger) Reproduce(otherTiger *Tiger) *Tiger {
+func (t *Tiger) Reproduce(tiger *Tiger) *Tiger {
 	age := 0
-	return NewTiger(t.Animal.Reproduce(otherTiger.Animal), age)
+	child := t.Animal.Reproduce(tiger.Animal)
+	if child == nil {
+		return nil
+	}
+	return NewTiger(child.name, child.sex, age)
 }
 
 func (t *Tiger) Show() {
 	fmt.Println(reflect.TypeOf(t))
-	t.Animal.ShowAnimal()
+	fmt.Print(description)
+	t.Animal.Show()
 }

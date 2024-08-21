@@ -17,5 +17,5 @@ func (s InteractionType) String() string {
 	case LetGo:
 		return "LetGo"
 	}
-	return "unknown"
+	return "Unknown"
 }
