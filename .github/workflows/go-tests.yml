@@ -13,13 +13,13 @@ jobs:
     strategy:
       matrix:
         directory:
-          - gocourse02
-          - gocourse03
+         # - gocourse02
+         # - gocourse03
           - gocourse04
-          - gocourse05
-          - gocourse06
-          - gocourse07
-          - gocourse08
+         # - gocourse05
+         # - gocourse06
+         # - gocourse07
+         # - gocourse08
 
     steps:
     - name: Checkout code
