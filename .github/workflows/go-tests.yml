@@ -2,16 +2,27 @@ name: Go
 
 on:
   push:
-    branches: ['*']  
+    branches: ['*']
   pull_request:
-    branches: ['*']  
+    branches: ['*']
   pull_request_target:
-    branches: ['*'] 
+    branches: ['*']
 
 jobs:
   test:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        directory:
+          - gocourse02
+          - gocourse03
+          - gocourse04
+          - gocourse05
+          - gocourse06
+          - gocourse07
+          - gocourse08
 
     steps:
     - name: Checkout code
@@ -21,8 +32,9 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: 1.22.6
-    - name: Install dependencies
-      run: cd gocourse04 && go mod download 
 
-    - name: Run tests
-      run: cd gocourse04 && go test ./... -v
+    - name: Install dependencies and run tests
+      run: |
+        cd ${{ matrix.directory }}
+        go mod download
+        go test ./... -v
