@@ -1,8 +1,9 @@
 package main
 
 import (
-	"gocourse04/zoo"
 	"strconv"
+
+	"gocourse04/zoo"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	z.MoveAnimal("Monkey9", zoo.SectorTypeAviary)
 	z.MoveAnimal("Monkey8", zoo.SectorTypeAviary)
 	z.MoveAnimal("Monkey7", zoo.SectorTypeAviary)
-	//z.MoveAnimal("Monkey6", zoo.SectorTypeAviary)
+	// z.MoveAnimal("Monkey6", zoo.SectorTypeAviary)
 
 	z.Show()
 }
@@ -26,6 +27,7 @@ func FeelWithRandomAnimals(z *zoo.Zoo) {
 		}
 	}
 }
+
 func BuildZoo() *zoo.Zoo {
 	z := zoo.NewZoo()
 

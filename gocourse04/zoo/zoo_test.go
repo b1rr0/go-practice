@@ -71,3 +71,18 @@ func TestZooMoveAnimalSector(t *testing.T) {
 	z.AddAnimal(NewAnimal(AllAnimalSpeciesValues()[0], 1, "Lion"))
 	assert.True(t, z.MoveAnimal("Lion", SectorTypeCage))
 }
+
+func BenchmarkGetAnimalByName(b *testing.B) {
+	z := NewZoo()
+	area := *NewArea("Test area", "Test area")
+	area.Sectors[DefaultSectorType] = *NewSector("Test sector")
+	z.Areas[AllAnimalSpeciesValues()[0]] = area
+
+	z.AddAnimal(NewAnimal(AllAnimalSpeciesValues()[0], 1, "Lion"))
+
+	b.ResetTimer() // Скидаємо таймер перед початком тестування
+
+	for i := 0; i < b.N; i++ {
+		_ = z.GetAnimalByName("Lion")
+	}
+}

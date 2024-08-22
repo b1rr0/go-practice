@@ -26,6 +26,7 @@ func (s Sector) Show() {
 	}
 	fmt.Print("==================\n")
 }
+
 func (s Sector) RemoveAnimal(name string) Sector {
 	for i, animal := range s.Animals {
 		if animal.Name == name {
