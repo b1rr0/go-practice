@@ -19,10 +19,8 @@ func NewCameraNight(name string, listener server.ZooCameraProcessorServer) *Came
 }
 
 func (c *CameraNight) Run() {
-
 	for {
 		c.listener.ProcessPhoto(cameras.RandomNightPhoto("Made on camera:" + c.Name))
 		time.Sleep(time.Second)
 	}
-
 }

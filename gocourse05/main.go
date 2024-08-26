@@ -3,13 +3,14 @@ package main
 import (
 	"gocourse05/server"
 	"gocourse05/server/zoo/cameras"
+	"sync"
 )
 
 func main() {
 
 	listener := server.NewZooCameraProcessorServer()
 	listener.AddService(server.NewAnalitykService(555, "2323"))
-	listener.AddService(server.NewTaxService("BOOO"))
+	listener.AddService(server.NewLogService("BOOO"))
 
 	var camerasArr []cameras.Camera
 
@@ -21,7 +22,11 @@ func main() {
 	camerasArr = append(camerasArr, cameras.NewCameraNight("NightCam2", *listener))
 
 	for _, camera := range camerasArr {
-		camera.Run()
+		go camera.Run()
 	}
+
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+	wg.Wait() //4 infinity w8
 
 }

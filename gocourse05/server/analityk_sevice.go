@@ -15,7 +15,7 @@ func NewAnalitykService(port int, url string) *AnalitykService {
 }
 
 func (a *AnalitykService) SendData(s string) {
-
+	//send to somewhere
 	fmt.Printf("Send data to port %d, url %s, data %s\n", a.port, a.url, s)
 
 }

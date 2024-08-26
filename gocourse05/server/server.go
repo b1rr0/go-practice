@@ -3,14 +3,14 @@ package server
 import "gocourse05/server/zoo/photo"
 
 type ZooCameraProcessorServer struct {
-	services []GiveNormalNameService
+	services []Sender
 }
 
 func NewZooCameraProcessorServer() *ZooCameraProcessorServer {
 	return &ZooCameraProcessorServer{}
 }
 
-func (s *ZooCameraProcessorServer) AddService(service GiveNormalNameService) {
+func (s *ZooCameraProcessorServer) AddService(service Sender) {
 	s.services = append(s.services, service)
 }
 

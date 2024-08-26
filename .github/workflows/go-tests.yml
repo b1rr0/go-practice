@@ -16,7 +16,7 @@ jobs:
          # - gocourse02
          # - gocourse03
           - gocourse04
-         # - gocourse05
+          - gocourse05
          # - gocourse06
          # - gocourse07
          # - gocourse08

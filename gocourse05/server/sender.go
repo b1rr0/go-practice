@@ -1,5 +1,5 @@
 package server
 
-type GiveNormalNameService interface {
+type Sender interface {
 	SendData(str string)
 }
