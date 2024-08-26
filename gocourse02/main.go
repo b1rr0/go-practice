@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"gocourse02/zoo"
 )
 

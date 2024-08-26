@@ -1,8 +1,0 @@
-repos:
-  - repo: local
-    hooks:
-      - id: custom-bash-script
-        name: gofumpt-formatter
-        entry: bash hooks/pre-commit.sh
-        language: script
-        files: \.go$
